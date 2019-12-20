@@ -1,0 +1,46 @@
+{%- include github.html -%}
+<!DOCTYPE html>
+<html lang="{{ site.lang | default: "en-US" }}">
+  <head>
+    <meta charset="UTF-8">
+    <title>
+    {%-if page.title-%}
+      {{ page.title | escape }} - {{ site_project_title }}
+    {%-else-%}
+      {%-assign page_title = page.name | replace: ".md", '' | append: " - " | append: site_project_title-%}
+      {{ page_title }}
+    {%-endif-%}
+    </title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{{ "/assets/css/style.css" | relative_url }}">
+  </head>
+  <body>
+    <div class="container-lg px-3 my-5 markdown-body">
+{% include navigation.html %}
+{% if site.title and site.title != page.title %}
+      <h1><a href="{{ site_repository_url }}">{{ site.title }}</a></h1>
+{% endif %}
+      {{ content }}
+      {% if site_private != true and site_license %}
+      <div class="footer border-top border-gray-light mt-5 pt-3 text-right text-gray">
+        This site is open source.
+        <a href="{{ site_repository_url }}/edit/{{ site_branch }}/{{ page.path }}">
+        Improve this page</a>.
+      </div>
+      {% endif %}
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.1.0/anchor.min.js" integrity="sha256-lZaRhKri35AyJSypXXs4o6OPFTbTmUoltBbDCbdzegg=" crossorigin="anonymous"></script>
+    <script>anchors.add();</script>
+    {% if site.google_analytics %}
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      ga('create', '{{ site.google_analytics }}', 'auto');
+      ga('send', 'pageview');
+    </script>
+    {% endif %}
+  </body>
+</html>

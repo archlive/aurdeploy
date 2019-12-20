@@ -1,0 +1,29 @@
+defaults:
+- scope:
+    path: ""
+  values:
+    lang: "en"
+
+- scope:
+    path: ""
+    type: "pages"
+  values:
+    layout: "default"
+
+exclude:
+- Gemfile
+- Gemfile.lock
+- LICENSE
+- README.md
+- setup.sh
+- TODO.md
+
+sass:
+  style: compressed
+
+locale:
+  default: "en"
+
+authors:
+  content: "redtide"
+  web: "redtide"
